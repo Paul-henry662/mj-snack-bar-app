@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Command;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CommandFactory extends Factory
@@ -23,6 +24,7 @@ class CommandFactory extends Factory
     {
         return [
             'amount' => rand(900, 50000),
+            'user_id' => User::factory(),
         ];
     }
 }

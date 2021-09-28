@@ -16,6 +16,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class)->withTimeStamps();
     }
 
+    public function commands(){
+        return $this->hasMany(Command::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
