@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoleUserTable extends Migration
+class CreateCommandDrinkTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateRoleUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_user', function (Blueprint $table) {
-            $table->integer('user_id');
-            $table->integer('role_id');
+        Schema::create('command_drink', function (Blueprint $table) {
+            $table->integer('drink_id');
+            $table->integer('command_id');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateRoleUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('role_user');
+        Schema::dropIfExists('command_drink');
     }
 }
