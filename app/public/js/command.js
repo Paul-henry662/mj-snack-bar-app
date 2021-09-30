@@ -1,6 +1,125 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
+
+/***/ "./resources/js/command.js":
+/*!*********************************!*\
+  !*** ./resources/js/command.js ***!
+  \*********************************/
+/***/ (() => {
+
+/**
+ * Mike & Julia Hotel Snack Bar App Project
+ * command.js
+ * 
+ * @author Paul-henry NGOUNOU
+ */
+//Local storage
+var storedQuantities = localStorage.getItem("quantities"); //Command objects
+
+var quantities = storedQuantities != undefined ? JSON.parse(storedQuantities) : {};
+var prices = {}; //DOM
+
+var commandList = document.querySelector(".command__list");
+var priceContainer = document.querySelector(".command__pricing").firstElementChild;
+var cardCaptions = document.querySelectorAll(".card__caption");
+var submitBtn = document.querySelector(".command__btn");
+var catalogGrid = document.querySelector(".catalog__grid");
+
+function addToCommand(drinkName) {
+  if (quantities[drinkName]) {
+    quantities[drinkName]++;
+  } else {
+    quantities[drinkName] = 1;
+  }
+
+  localStorage.setItem("quantities", JSON.stringify(quantities));
+}
+
+function removeFromCommand(drinkName) {
+  delete quantities[drinkName];
+  localStorage.setItem("quantities", JSON.stringify(quantities));
+}
+
+function updateCommandList() {
+  commandList.innerHTML = "";
+
+  var _loop = function _loop(_drink) {
+    var newLi = document.createElement("li");
+    var newTextNode = document.createTextNode(_drink);
+    var newSpan = document.createElement("span");
+    var newDelIcon = document.createElement("span");
+    newDelIcon.classList.add("item__del-icon");
+    newDelIcon.innerHTML = "&times;";
+    newDelIcon.addEventListener("click", function () {
+      removeFromCommand(_drink);
+      updateCommandList();
+      updatePrice();
+    });
+    newSpan.classList.add("item__quantity");
+    newSpan.innerHTML = quantities[_drink];
+    newLi.classList.add("list__item");
+    newLi.appendChild(newSpan);
+    newLi.appendChild(newTextNode);
+    newLi.appendChild(newDelIcon);
+    commandList.appendChild(newLi);
+  };
+
+  for (var _drink in quantities) {
+    _loop(_drink);
+  }
+}
+
+function updatePrice() {
+  var totalAmount = 0;
+
+  for (drink in quantities) {
+    totalAmount += quantities[drink] * prices[drink];
+  }
+
+  priceContainer.innerHTML = totalAmount;
+} //Functions
+
+
+function main() {
+  cardCaptions.forEach(function (caption) {
+    var drinkName = caption.firstElementChild.innerHTML.toLowerCase();
+    var drinkPrice = caption.firstElementChild.nextElementSibling.innerHTML.split(" ")[0];
+    var addBtn = caption.lastElementChild;
+    prices[drinkName] = parseInt(drinkPrice);
+    addBtn.addEventListener("click", function () {
+      addToCommand(drinkName);
+      updateCommandList();
+      updatePrice();
+    });
+  });
+  updateCommandList();
+  updatePrice();
+  submitBtn.addEventListener("click", function () {
+    var data = quantities;
+    $.ajax({
+      "url": "http://localhost:8000/command/create",
+      "data": quantities,
+      "method": "POST",
+      "headers": {
+        "X-CSRF-TOKEN": localStorage.getItem("token")
+      },
+      "success": function success(result, status, xhr) {
+        console.log(result, status, xhr);
+        localStorage.removeItem("quantities");
+        quantities = {};
+        updateCommandList();
+        updatePrice();
+      },
+      "error": function error(xhr, status, _error) {
+        console.error(_error, status, xhr);
+      }
+    });
+  });
+}
+
+main();
+
+/***/ }),
 
 /***/ "./resources/css/app.css":
 /*!*******************************!*\
@@ -8,6 +127,7 @@
   \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -100,7 +220,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"/js/app": 0,
+/******/ 			"/js/command": 0,
 /******/ 			"css/app": 0
 /******/ 		};
 /******/ 		
@@ -151,6 +271,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/command.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	

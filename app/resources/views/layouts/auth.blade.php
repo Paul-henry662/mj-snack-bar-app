@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')
+@section('body_content')
     <main>
         <h1>@yield('page_title')</h1>
 

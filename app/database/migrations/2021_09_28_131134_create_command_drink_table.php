@@ -16,6 +16,7 @@ class CreateCommandDrinkTable extends Migration
         Schema::create('command_drink', function (Blueprint $table) {
             $table->integer('drink_id');
             $table->integer('command_id');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

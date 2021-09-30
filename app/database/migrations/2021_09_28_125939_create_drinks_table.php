@@ -16,6 +16,7 @@ class CreateDrinksTable extends Migration
         Schema::create('drinks', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->integer('price');
             $table->timestamps();
         });
     }

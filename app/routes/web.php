@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CommandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +16,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(Auth::user()){
+        return redirect(route('create_command'));
+    }
+    else{
+        return redirect(route('login'));
+    }
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/command/create', [CommandController::class, 'create'])
+    ->middleware(['auth'])->name('create_command');
+
+Route::post('/command/create', [CommandController::class, 'store']);
 
 require __DIR__.'/auth.php';

@@ -23,6 +23,7 @@ class DrinkFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
+            'price' => rand(600, 1200),
         ];
     }
 }
