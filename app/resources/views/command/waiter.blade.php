@@ -21,7 +21,7 @@
 
         <div class="catalog__grid">
             @foreach($drinks as $drink)
-                <figure class="grid__card">
+                <figure class="catalog__card">
                     <img src="./" alt = "{{ $drink->name }} Bottles">
 
                     <figcaption class="card__caption">

@@ -10,7 +10,9 @@ class Drink extends Model
     use HasFactory;
 
     public function commands(){
-        return $this->belongsToMany(Command::class)->withTimeStamps();
+        return $this->belongsToMany(Command::class)
+                ->withPivot('quantity')
+                ->withTimeStamps();
     }
 
     protected $fillable = [

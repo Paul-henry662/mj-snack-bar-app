@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Command;
 use App\Models\Drink;
 use Illuminate\Http\Request;
@@ -17,7 +18,10 @@ class CommandController extends Controller
      */
     public function index()
     {
-        //
+        $newCommands = Command::where('state', 0)->get();
+        $printedCommands = Command::where('state', 1)->get();
+
+        return view('command.cashier', ['newCommands' => $newCommands, 'printedCommands' => $printedCommands]);
     }
 
     /**
@@ -28,7 +32,7 @@ class CommandController extends Controller
     public function create()
     {
         $drinks = Drink::all();
-        return view('command.create', ['drinks' => $drinks]);
+        return view('command.waiter', ['drinks' => $drinks]);
     }
 
     /**
@@ -50,6 +54,7 @@ class CommandController extends Controller
         $command = Command::create([
             'amount' => $amount,
             'user_id' => Auth::id(),
+            'state' => 0,
         ]);
 
         foreach($request->all() as $drink => $quantity){
@@ -106,5 +111,63 @@ class CommandController extends Controller
     public function destroy(Command $command)
     {
         //
+    }
+
+    public function getNew(){
+        $drinks = [];
+        $waiters = [];
+
+        $newCommands = Command::where('state', 0)->get();
+
+        foreach($newCommands as $command){
+            $quantities = [];
+
+            foreach($command->drinks()->get() as $drink){
+                $quantities[$drink->name] = $drink->pivot->quantity;
+            }
+
+            $drinks[$command->id] = $quantities;
+
+            $waiters[$command->id] = User::find($command->user_id);
+        }
+
+        return [
+            'commands' => $newCommands,
+            'quantities' => $drinks,
+            'waiters' => $waiters,
+        ];
+    }
+
+    public function getPrinted(){
+        $drinks = [];
+        $waiters = [];
+
+        $printedCommands = Command::where('state', 1)->get();
+
+        foreach($printedCommands as $command){
+            $quantities = [];
+
+            foreach($command->drinks()->get() as $drink){
+                $quantities[$drink->name] = $drink->pivot->quantity;
+            }
+
+            $drinks[$command->id] = $quantities;
+
+            $waiters[$command->id] = User::find($command->user_id);
+        }
+
+        return [
+            'commands' => $printedCommands,
+            'quantities' => $drinks,
+            'waiters' => $waiters,
+        ];
+    }
+
+    public function updateState($commandId){
+        $command = Command::find($commandId);
+
+        $command->update([
+            'state' => $command->state + 1,
+        ]);
     }
 }
