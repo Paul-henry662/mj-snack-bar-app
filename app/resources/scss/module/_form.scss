@@ -1,0 +1,19 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+
+.form{
+    @include mix.displayFlex(column nowrap, center, center);
+    row-gap: 0.7em;
+
+    .form__input{
+        width: 271px;
+        padding: 0.5em;
+        
+        border: {
+            style: solid;
+            radius: 0.6em;
+            color: var.$clr-neutral;
+            width: 1px;
+        };
+    }
+}

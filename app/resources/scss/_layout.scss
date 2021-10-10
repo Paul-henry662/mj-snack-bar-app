@@ -1,0 +1,12 @@
+@use "./abstracts/mixins" as mix;
+
+body{
+    @include mix.displayFlex(column nowrap, center, center);
+}
+
+main{
+    width: 100%;
+    @include mix.displayFlex(column nowrap, center, center);
+    row-gap: 1em;
+    text-align: center;
+}

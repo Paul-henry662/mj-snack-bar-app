@@ -14,6 +14,7 @@
         </div>
 
         <button class="command__btn">Envoyer</button>
+
     </div>
 
     <div class="catalog">
@@ -39,5 +40,5 @@
     <script>
         localStorage.setItem("token", "{{ csrf_token() }}");
     </script>
-    <script src="/js/command.js"></script>
+    <script src="{{ asset('js/command.js') }}"></script>
 @endsection

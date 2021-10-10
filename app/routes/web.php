@@ -30,6 +30,9 @@ Route::get('/', function () {
                 break;
             case 'cashier':
                 $destination = route('cashier');
+                break;
+            default:
+                $destination = route('waiter');
         }
 
         return redirect($destination);
@@ -46,10 +49,12 @@ Route::get('/dashboard', function () {
 Route::get('/waiter', [CommandController::class, 'create'])
     ->middleware(['auth'])->name('waiter');
 
-Route::post('/command/create', [CommandController::class, 'store'])->middleware(['auth']);
-
 Route::get('/cashier', [CommandController::class, 'index'])
     ->middleware(['auth'])->name('cashier');
+
+//API
+Route::post('/command/create', [CommandController::class, 'store'])->middleware(['auth'])
+    ->middleware(['auth']);
 
 Route::get('/commands/new', [CommandController::class, 'getNew'])
     ->middleware(['auth']);

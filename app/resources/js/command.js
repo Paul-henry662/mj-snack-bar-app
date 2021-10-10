@@ -18,6 +18,7 @@ const priceContainer = document.querySelector(".command__pricing").firstElementC
 const cardCaptions = document.querySelectorAll(".card__caption");
 const submitBtn = document.querySelector(".command__btn");
 const catalogGrid = document.querySelector(".catalog__grid");
+const searchBar = document.querySelector(".catalog__search");
 
 function addToCommand(drinkName){
     if(quantities[drinkName]){
@@ -74,6 +75,10 @@ function updatePrice(){
 
     priceContainer.innerHTML = totalAmount;
 }
+
+/*function updateCatalogFromSearch(){
+    if
+}*/
 
 //Functions
 function main(){

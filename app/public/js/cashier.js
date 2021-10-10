@@ -15,8 +15,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
  * 
  * @author Paul-henry NGOUNOU
  */
+//DOM
 var toPrintList = document.getElementById("to-print-list");
-var toValidateList = document.getElementById("to-validate-list");
+var toValidateList = document.getElementById("to-validate-list"); //functions
+
+/**
+ * Update to-print-list according to incoming infos.
+ * 
+ * @param infos 
+ */
 
 function updatePrintList(infos) {
   toPrintList.innerHTML = "";
@@ -79,6 +86,12 @@ function updatePrintList(infos) {
     _iterator.f();
   }
 }
+/**
+ * Update to-print-list according to incoming infos.
+ * 
+ * @param infos 
+ */
+
 
 function updateValidateList(infos) {
   toValidateList.innerHTML = "";

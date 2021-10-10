@@ -11,8 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/command.js', 'public/js').js('resources/js/cashier.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-    require('autoprefixer'),
-]);
+mix.js('resources/js/command.js', 'public/js')
+    .js('resources/js/cashier.js', 'public/js')
+    .sass('resources/scss/main.scss', 'public/css')
+

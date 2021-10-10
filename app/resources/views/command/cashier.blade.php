@@ -21,5 +21,8 @@
 @endsection
 
 @section('scripts')
-    <script src="/js/cashier.js"></script>
+    <script>
+        localStorage.setItem("token", "{{ csrf_token() }}");
+    </script>
+    <script src="{{ asset('js/cashier.js') }}"></script>
 @endsection

@@ -1,0 +1,6 @@
+@mixin displayFlex($flow, $alItems, $justContent){
+    display: flex;
+    flex-flow: $flow;
+    align-items: $alItems;
+    justify-content: $justContent;
+}

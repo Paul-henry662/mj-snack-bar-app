@@ -5,9 +5,17 @@
  * @author Paul-henry NGOUNOU
  */
 
+//DOM
 const toPrintList = document.getElementById("to-print-list");
 const toValidateList = document.getElementById("to-validate-list");
 
+//functions
+
+/**
+ * Update to-print-list according to incoming infos.
+ * 
+ * @param infos 
+ */
 function updatePrintList(infos){
     toPrintList.innerHTML = "";
 
@@ -65,6 +73,11 @@ function updatePrintList(infos){
     }
 }
 
+/**
+ * Update to-print-list according to incoming infos.
+ * 
+ * @param infos 
+ */
 function updateValidateList(infos){
     toValidateList.innerHTML = "";
 

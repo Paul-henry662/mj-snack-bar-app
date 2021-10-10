@@ -1,0 +1,28 @@
+@use "./abstracts/variables" as var;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+body{
+    min-height: 100vh;
+    font: {
+        family: map-get($map: var.$font-stacks, $key: neutral);
+        size: map-get($map: var.$font-sizes, $key: neutral--100);
+        weight: map-get($map: var.$font-weights, $key: neutral);
+    };
+}
+h1{
+    font: {
+        family: map-get($map: var.$font-stacks, $key: primary);
+        size: map-get($map: var.$font-sizes, $key: primary--500);
+        weight: map-get($map: var.$font-weights, $key: primary);
+    }
+}
+
+

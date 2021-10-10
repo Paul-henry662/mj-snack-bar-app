@@ -18,10 +18,15 @@ class CommandController extends Controller
      */
     public function index()
     {
-        $newCommands = Command::where('state', 0)->get();
-        $printedCommands = Command::where('state', 1)->get();
+        if(Auth::user()->roles()->first()->name != "waiter"){
+            $newCommands = Command::where('state', 0)->get();
+            $printedCommands = Command::where('state', 1)->get();
 
-        return view('command.cashier', ['newCommands' => $newCommands, 'printedCommands' => $printedCommands]);
+            return view('command.cashier', ['newCommands' => $newCommands, 'printedCommands' => $printedCommands]);
+        }
+        else{
+            return redirect("/");
+        }
     }
 
     /**
