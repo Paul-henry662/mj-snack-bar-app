@@ -4,13 +4,20 @@
     background: var.$clr-accent;
     border: none;
     color: var.$clr-primary--300;
-    width: 271px;
     border-radius: 1em;
     padding: 0.2em;
+    cursor: pointer;
 
     font: {
         family: map-get($map: var.$font-stacks, $key: primary);
         size: map-get($map: var.$font-sizes, $key: primary--300);
         weight: map-get($map: var.$font-weights, $key: primary);
     }
+}
+
+.btn--long{
+    width: 100%;
+}
+.btn--margin-top{
+    margin-top: 0.5em;
 }

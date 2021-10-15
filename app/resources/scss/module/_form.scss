@@ -3,17 +3,23 @@
 
 .form{
     @include mix.displayFlex(column nowrap, center, center);
-    row-gap: 0.7em;
+    row-gap: 0.8em;
+    width: min(271px, 70%);
+    min-width: 200px;
 
     .form__input{
-        width: 271px;
-        padding: 0.5em;
+        width: 100%;
+        padding: 0.5em 1em;
         
         border: {
             style: solid;
-            radius: 0.6em;
+            radius: 0.5em;
             color: var.$clr-neutral;
             width: 1px;
         };
+
+        &:focus{
+            outline: 2px solid var.$clr-accent;
+        }
     }
 }

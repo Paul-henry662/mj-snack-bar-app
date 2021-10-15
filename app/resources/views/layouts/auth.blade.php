@@ -2,9 +2,9 @@
 
 @section('body_content')
     <main>
-        <img src="" alt="Bar's logo">
+        <img src="{{ asset('./img/logo.svg') }}" alt="Bar's logo">
 
-        <h1>@yield('page_title')</h1>
+        @yield('page_title')
 
         @if ($errors->any())
             <div>

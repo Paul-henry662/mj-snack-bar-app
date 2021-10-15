@@ -7,6 +7,6 @@ body{
 main{
     width: 100%;
     @include mix.displayFlex(column nowrap, center, center);
-    row-gap: 1em;
+    row-gap: 3em;
     text-align: center;
 }

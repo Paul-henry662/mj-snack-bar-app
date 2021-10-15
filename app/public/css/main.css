@@ -33,7 +33,7 @@ main {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  row-gap: 1em;
+  row-gap: 3em;
   text-align: center;
 }
 
@@ -42,25 +42,38 @@ main {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  row-gap: 0.7em;
+  row-gap: 0.8em;
+  width: min(271px, 70%);
+  min-width: 200px;
 }
 .form .form__input {
-  width: 271px;
-  padding: 0.5em;
+  width: 100%;
+  padding: 0.5em 1em;
   border-style: solid;
-  border-radius: 0.6em;
+  border-radius: 0.5em;
   border-color: #929292;
   border-width: 1px;
+}
+.form .form__input:focus {
+  outline: 2px solid #FFC42C;
 }
 
 .btn {
   background: #FFC42C;
   border: none;
   color: white;
-  width: 271px;
   border-radius: 1em;
   padding: 0.2em;
+  cursor: pointer;
   font-family: "Calistoga", cursive;
   font-size: 1.25rem;
   font-weight: 400;
+}
+
+.btn--long {
+  width: 100%;
+}
+
+.btn--margin-top {
+  margin-top: 0.5em;
 }
