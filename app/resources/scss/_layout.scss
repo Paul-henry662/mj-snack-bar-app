@@ -1,12 +1,13 @@
 @use "./abstracts/mixins" as mix;
 
-body{
-    @include mix.displayFlex(column nowrap, center, center);
+main{
+    height: 100%;
+    @include mix.displayFlex(column nowrap, center, flex-start);
+    row-gap: 2em;
+    text-align: center;
+    padding: 7%;
 }
 
-main{
-    width: 100%;
-    @include mix.displayFlex(column nowrap, center, center);
-    row-gap: 3em;
-    text-align: center;
+.main--auth{
+    justify-content: center;
 }

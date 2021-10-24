@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @section('body_content')
-    <header>
-        <img src="./" alt="Logo du snack bar Mike & Julia">
+    <header class="header">
+        <img src="{{ asset('./images/logo.svg') }}" alt="Logo du snack bar Mike & Julia">
+        <div style="color:white;">
+            {{ Auth::user()->first_name }}
+        </div>
     </header>
 
     <main>

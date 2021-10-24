@@ -6,15 +6,13 @@
 
 @section('page_content')
     <div class="command">
-        <ul class="command__list">
+        <ul class="command__list card">
         </ul>
-
-        <div class="command__pricing">
+        <div class="command__pricing card--bordered card--centered">
             <span class="pricing__cost">0</span> FCFA
         </div>
 
-        <button class="command__btn">Envoyer</button>
-
+        <button class="command__btn btn btn--long">Envoyer</button>
     </div>
 
     <div class="catalog">
@@ -22,13 +20,14 @@
 
         <div class="catalog__grid">
             @foreach($drinks as $drink)
-                <figure class="catalog__card">
-                    <img src="./" alt = "{{ $drink->name }} Bottles">
+                <figure class="catalog__card card--captioned">
+                    <div class="card__img-container" style="background: url('{{ asset("./images/camernews-Export.jpg") }}');">
+                    </div>
 
                     <figcaption class="card__caption">
                         <h2 class="caption__name">{{ $drink->name }}</h2>
                         <small class="caption__pricing">{{ $drink->price }} FCFA</small>
-                        <button class="caption__btn">&plus;</button>
+                        <button class="caption__btn btn btn--long">&plus;</button>
                     </figcaption>
                 </figure>
             @endforeach

@@ -109,7 +109,7 @@ function main() {
         "X-CSRF-TOKEN": localStorage.getItem("token")
       },
       "success": function success(result, status, xhr) {
-        console.log(result, status, xhr);
+        console.log(quantities);
         localStorage.removeItem("quantities");
         quantities = {};
         updateCommandList();

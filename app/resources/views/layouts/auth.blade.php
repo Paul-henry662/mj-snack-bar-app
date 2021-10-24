@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('body_content')
-    <main>
-        <img src="{{ asset('./img/logo.svg') }}" alt="Bar's logo">
+    <main class="main main--auth">
+        <img src="{{ asset('./images/logo.svg') }}" alt="Bar's logo">
 
         @yield('page_title')
 

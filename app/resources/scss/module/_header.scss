@@ -1,0 +1,16 @@
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as var;
+
+.header{
+    width: 100%;
+    background: {
+        color: var.$clr-primary--500;
+        image: url("../../img/header.webp");
+        size: cover;
+        repeat: no-repeat;
+        position: center;
+    };
+    height: 30vh;
+    
+    @include mix.displayFlex(column nowrap, flex-start, flex-end);
+}

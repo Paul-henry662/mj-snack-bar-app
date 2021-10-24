@@ -1,0 +1,49 @@
+@use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mix;
+
+.card{
+    width: 250px;
+    height: 150px;
+    padding: 0.8em;
+    border-radius: 1em;
+    background: var.$clr-primary--500;
+    @include mix.displayFlex(column nowrap, flex-start, flex-start);
+    row-gap: 0.3em;
+    text-align: start;
+    list-style-type: none;
+    color: var.$clr-primary--300;
+}
+
+.card--centered{
+    align-items: center;
+    justify-content: center;
+}
+
+.card--bordered{
+    background: none;
+    border: 1px solid var.$clr-primary--500;
+    padding-block: 0.7em;
+    border-radius: 0.6em;
+}
+
+.card--captioned{
+    width: 30%;
+    min-width: 100px;
+    border-radius: 1em;
+    overflow: hidden;
+
+    @at-root .card__caption{
+        background: var.$clr-primary--500;
+        @include mix.displayFlex(column nowrap, center, center);
+        row-gap: 0.5em;
+        padding: 1em;
+    }
+
+    @at-root .card__img-container{
+        max-width: 100%;
+        aspect-ratio: 1;
+        overflow: hidden;
+        background-position: center;
+        background-size: contain;
+    }
+}
